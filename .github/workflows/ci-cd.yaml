@@ -3,7 +3,7 @@ name: CI/CD - Testes
 on:
   push:
     branches:
-      - recurso/validação-chamado
+      - feature/validacao-chamado
 
   pull_request:
     branches:
@@ -12,32 +12,32 @@ on:
 jobs:
 
   test:
-    name: Executar testes
+    name: Executar testes / Run tests
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Baixar código
+      - name: Baixar código / Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: Configurar Node.js / Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Instalar dependências
+      - name: Instalar dependências / Install dependencies
         run: npm ci
 
-      - name: Executar testes
+      - name: Executar testes / Run tests
         run: npm test
 
   deploy:
-    name: Simular Deploy
+    name: Simular Deploy / Simulate Deploy
     runs-on: ubuntu-latest
 
     needs: test
 
     steps:
 
-      - name: Simular deploy
-        run: echo "Deploy realizado com sucesso!"
+      - name: Simular deploy / Simulate deploy
+        run: echo "Deploy realizado com sucesso! / Deploy completed successfully!"
